@@ -18,4 +18,4 @@ COPY templates/index.html /usr/src/client/templates/
 
 EXPOSE 5000
 
-CMD ["py", "/usr/src/client/client.py"]
+CMD ["python3", "/usr/src/client/client.py"]
