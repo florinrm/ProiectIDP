@@ -1,0 +1,18 @@
+version: "3"
+services:
+  web-client:
+    image: florinrm/proiect_idp:example
+    deploy:
+      replicas: 4
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: 100M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8888:5000"
+    networks:
+      - webnet
+networks:
+  webnet:
