@@ -1,13 +1,25 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from redis import Redis
 import random
+import os
 
 app = Flask(__name__)
+app.static_folder = 'static'
+
+
+'''
+@app.route('/stylesheets/<path:filename>')
+def serve_static(filename):
+    root_dir = os.path.dirname(os.getcwd())
+    return send_from_directory(os.path.join(root_dir, 'static', 'js'), filename)
+'''
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    template = render_template('index.html')
+    print(template)
+    return template
 
 
 if __name__ == "__main__":
