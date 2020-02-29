@@ -7,6 +7,9 @@ The project is structured in 3 parts:
 - server - administrates database
 
 ![diagram](diagram.png "Project diagram")
+Docker repo: https://hub.docker.com/r/florinrm/proiect_idp
+
+Git repo: https://github.com/florinrm/ProiectIDP
 
 ## Client
 How to run client?
@@ -17,3 +20,4 @@ How to run client?
 ## Server
 
 ## Database
+
