@@ -18,7 +18,13 @@ def serve_static(filename):
 @app.route('/')
 def index():
     template = render_template('index.html')
-    print(template)
+    return template
+
+
+@app.route('/page/')
+def page():
+    print('sex anal cu mama lui costi care e curva mare')
+    template = render_template('page.html')
     return template
 
 
