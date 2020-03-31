@@ -10,6 +10,7 @@ app.static_folder = 'static'
 @app.route('/')
 def index():
     template = render_template('index.html')
+
     return template
 
 
