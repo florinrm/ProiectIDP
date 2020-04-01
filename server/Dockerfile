@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir -r /usr/src/server/requirements.txt
 
 COPY server.py /usr/src/server/
 COPY templates/index.html /usr/src/server/templates/
+COPY templates/page.html /usr/src/server/templates/
 COPY static/stylesheets/style.css /usr/src/server/static/stylesheets/
 
 EXPOSE 5001
