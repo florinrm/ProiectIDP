@@ -17,6 +17,6 @@ COPY server.py /usr/src/server/
 COPY templates/index.html /usr/src/server/templates/
 COPY static/stylesheets/style.css /usr/src/server/static/stylesheets/
 
-EXPOSE 4000
+EXPOSE 5001
 
 CMD ["python3", "/usr/src/server/server.py"]
