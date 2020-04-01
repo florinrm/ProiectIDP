@@ -18,8 +18,18 @@ How to run client?
 3) Access page at http://127.0.0.1:8888/
 
 ## Server
-
+How to run server?
+1) Build container: `docker build -t server server` (from root folder of the project)
+2) Run container: `docker container run -p 5001:5001 client`
+3) Access page at http://127.0.0.1:5001/
 ## Database
 
 ## Data monitoring
 
+## Running with docker-compose
+```
+docker swarm init
+docker stack deploy -c .\docker-compose.yml app
+docker stack rm app
+docker swarm leave --force
+```
