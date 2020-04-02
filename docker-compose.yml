@@ -1,5 +1,17 @@
 version: "3"
 services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: bd
+      MYSQL_USER: malone
+      MYSQL_PASSWORD: 6969
   web-client:
     image: florinrm/proiect_idp:client
     deploy:
@@ -14,8 +26,8 @@ services:
       - "8888:5000"
     networks:
       - webnet
-  web-server:
-    image: florinrm/proiect_idp:server
+  web-server-admin-frontend:
+    image: florinrm/proiect_idp:admin-server-frontend
     deploy:
       replicas: 4
       resources:
@@ -26,6 +38,20 @@ services:
         condition: on-failure
     ports:
       - "5001:5001"
+    networks:
+      - webnet
+  web-server-admin-backend:
+    image: florinrm/proiect_idp:admin-server-frontend
+    deploy:
+      replicas: 4
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: 100M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "5002:5002"
     networks:
       - webnet
 networks:

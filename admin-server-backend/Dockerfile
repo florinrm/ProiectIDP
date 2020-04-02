@@ -10,14 +10,11 @@ RUN echo "**** install Python ****" && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
 
-COPY requirements.txt /usr/src/server/
-RUN pip install --no-cache-dir -r /usr/src/server/requirements.txt
+COPY requirements.txt /usr/src/admin-server-backend/
+RUN pip install --no-cache-dir -r /usr/src/admin-server-backend/requirements.txt
 
-COPY server.py /usr/src/server/
-COPY templates/index.html /usr/src/server/templates/
-COPY templates/page.html /usr/src/server/templates/
-COPY static/stylesheets/style.css /usr/src/server/static/stylesheets/
+COPY admin-server-backend.py /usr/src/admin-server-backend/
 
-EXPOSE 5001
+EXPOSE 5002
 
-CMD ["python3", "/usr/src/server/server.py"]
+CMD ["python3", "/usr/src/admin-server-backend/admin-server-backend.py"]
