@@ -41,7 +41,7 @@ services:
     networks:
       - webnet
   web-server-admin-backend:
-    image: florinrm/proiect_idp:admin-server-frontend
+    image: florinrm/proiect_idp:admin-server-backend
     deploy:
       replicas: 4
       resources:
