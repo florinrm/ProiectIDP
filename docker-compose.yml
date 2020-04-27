@@ -1,9 +1,16 @@
-version: "3"
+version: "3.7"
+networks:
+  webnet:
+    driver: overlay
+
+volumes:
+  mysql_db:
+
 services:
   db:
-    image: mysql:latest
+    image: florinrm/proiect_idp:db
     volumes:
-      - ./db:/docker-entrypoint-initdb.d/:ro
+      - mysql_db:/var/lib/mysql
     ports:
       - "3306:3306"
     restart: always
@@ -12,8 +19,9 @@ services:
       MYSQL_DATABASE: db
       MYSQL_USER: db
       MYSQL_PASSWORD: 1234
-  web-client:
-    image: florinrm/proiect_idp:latest
+
+  client:
+    image: florinrm/proiect_idp:client
     deploy:
       replicas: 4
       resources:
@@ -28,8 +36,9 @@ services:
       - db
     networks:
       - webnet
-  web-server-admin-frontend:
-    image: florinrm/proiect_idp:admin-server-frontend
+
+  app:
+    image: florinrm/proiect_idp:app
     deploy:
       replicas: 4
       resources:
@@ -42,8 +51,9 @@ services:
       - "5001:5001"
     networks:
       - webnet
-  web-server-admin-backend:
-    image: florinrm/proiect_idp:admin-server-backend
+
+  admin:
+    image: florinrm/proiect_idp:admin
     deploy:
       replicas: 4
       resources:
@@ -56,5 +66,3 @@ services:
       - "5002:5002"
     networks:
       - webnet
-networks:
-  webnet:

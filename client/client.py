@@ -4,9 +4,6 @@ from redis import Redis
 import random
 import os
 
-app = Flask(__name__)
-app.static_folder = 'static'
-
 config_db = {
 'user': 'db',
 'password': '1224',
@@ -16,52 +13,43 @@ config_db = {
 }
 
 
-def check_password(username, password):
-    conn = connector.connect(**config_db)
-    cursor = conn.cursor()
-    passw = None
-    try:
-        cursor.execute("SELECT password from USERS WHERE USERNAME = %s", username)
-        passw = cursor.fetchall()
-    except connector.Error:
-        print('error from getting password')
-    finally:
-        conn.commit()
-        cursor.close()
-        conn.close()
-    if passw is None:
-        return passw == password
-    return None
+def show_items():
+    pass
 
 
-@app.route('/login-check', methods=['GET', 'POST'])
-def login_check():
-    template = render_template('index.html')
-
-    if request.method == 'POST':
-        info = request.form
-        user = info['username']
-        password = info['password']
-        print(user, password)
-        result = check_password(user, password)
-        if result is None:
-            if result:
-                return render_template("page.html")
-
-    return template
+def buy_album():
+    pass
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    template = render_template('index.html')
-    return template
+def buy_song():
+    pass
 
 
-@app.route('/page/', methods=['GET', 'POST'])
-def page():
-    template = render_template('page.html')
-    return template
+def operate(index):
+    if index == 1:
+        show_items()
+    elif index == 2:
+        buy_album()
+    elif index == 3:
+        buy_song()
+    else:
+        print('Now exiting...')
+        exit()
+
+def print_app():
+    print("Choose an option:\n")
+    print("1: Visualize the items in shop")
+    print("2: Buy an album")
+    print("3: Buy a song")
+    print("4: Exit")
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    print("Welcome to the Online Music Shopping")
+    while True:
+        print_app()
+        option = input()
+        if (not option.isnumeric()) or (option.isnumeric() and ((int(option) < 1) or (int(option) > 4))):
+            print("Choose a valid option")
+            continue
+        operate(int(option))

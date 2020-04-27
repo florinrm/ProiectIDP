@@ -10,13 +10,10 @@ RUN echo "**** install Python ****" && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
 
-COPY requirements.txt /usr/src/monitor/
-RUN pip install --no-cache-dir -r /usr/src/monitor/requirements.txt
+COPY requirements.txt /usr/src/admin/
+RUN pip install --no-cache-dir -r /usr/src/admin/requirements.txt
 
-COPY monitor.py /usr/src/monitor/
-COPY templates/index.html /usr/src/monitor/templates/
-COPY static/stylesheets/style.css /usr/src/monitor/static/stylesheets/
+COPY admin.py /usr/src/admin/
+EXPOSE 5002
 
-EXPOSE 5000
-
-CMD ["python3", "/usr/src/monitor/monitor.py"]
+CMD ["python3", "/usr/src/admin/admin.py"]

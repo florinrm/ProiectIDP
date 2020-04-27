@@ -14,9 +14,6 @@ COPY requirements.txt /usr/src/client/
 RUN pip install --no-cache-dir -r /usr/src/client/requirements.txt
 
 COPY client.py /usr/src/client/
-COPY templates/index.html /usr/src/client/templates/
-COPY templates/page.html /usr/src/client/templates/
-COPY static/stylesheets/style.css /usr/src/client/static/stylesheets/
 
 EXPOSE 5000
 
