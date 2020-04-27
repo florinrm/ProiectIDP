@@ -1,3 +1,5 @@
+use db;
+
 CREATE TABLE IF NOT EXISTS song (
     title varchar(30) not null,
     artist varchar(30) not null,

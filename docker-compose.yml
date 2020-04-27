@@ -9,9 +9,9 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: bd
-      MYSQL_USER: malone
-      MYSQL_PASSWORD: 6969
+      MYSQL_DATABASE: db
+      MYSQL_USER: db
+      MYSQL_PASSWORD: 1234
   web-client:
     image: florinrm/proiect_idp:latest
     deploy:
@@ -24,6 +24,8 @@ services:
         condition: on-failure
     ports:
       - "8888:5000"
+    depends_on:
+      - db
     networks:
       - webnet
   web-server-admin-frontend:
