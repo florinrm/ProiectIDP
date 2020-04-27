@@ -15,6 +15,7 @@ config_db = {
 'database': 'db'
 }
 
+
 def check_password(username, password):
     conn = connector.connect(**config_db)
     cursor = conn.cursor()
@@ -33,7 +34,7 @@ def check_password(username, password):
     return None
 
 
-@app.route('/login-check')
+@app.route('/login-check', methods=['GET', 'POST'])
 def login_check():
     template = render_template('index.html')
     if request.method == 'POST':
