@@ -11,14 +11,15 @@ def login_check():
     template = render_template('index.html')
     return template
 
-@app.route('/')
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
     template = render_template('index.html')
     print('plm')
     return template
 
 
-@app.route('/page/')
+@app.route('/page/', methods=['GET', 'POST'])
 def page():
     template = render_template('page.html')
     return template
