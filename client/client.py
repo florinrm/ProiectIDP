@@ -37,6 +37,7 @@ def check_password(username, password):
 @app.route('/login-check', methods=['GET', 'POST'])
 def login_check():
     template = render_template('index.html')
+    '''
     if request.method == 'POST':
         info = request.form
         user = info['username']
@@ -46,6 +47,7 @@ def login_check():
         if result is None:
             if result:
                 return render_template("page.html")
+                '''
     return template
 
 
