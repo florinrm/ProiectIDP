@@ -51,7 +51,11 @@ if __name__ == "__main__":
         print_options()
         option = input()
         option = option.strip('\n')
-        if (not option.isnumeric()) or (option.isnumeric() and ((int(option) < 1) or (int(option) > 6))):
-            print("Choose a valid option")
+        if not option.isnumeric():
+            print("Option not a number")
+            continue
+        option = int(option)
+        if option < 1 or option > 6:
+            print("Given option not in range [1, 6]")
             continue
         operate(int(option))
