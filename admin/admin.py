@@ -49,7 +49,7 @@ def print_options():
 if __name__ == "__main__":
     while True:
         print_options()
-        option = input()
+        option = input("Write option: ")
         option = option.strip('\n')
         if not option.isnumeric():
             print("Option not a number")
