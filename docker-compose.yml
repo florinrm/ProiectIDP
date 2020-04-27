@@ -13,7 +13,7 @@ services:
       MYSQL_USER: malone
       MYSQL_PASSWORD: 6969
   web-client:
-    image: florinrm/proiect_idp:client
+    image: florinrm/proiect_idp:latest
     deploy:
       replicas: 4
       resources:
