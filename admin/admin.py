@@ -50,6 +50,7 @@ if __name__ == "__main__":
     while True:
         print_options()
         option = input()
+        option = option.strip('\n')
         if (not option.isnumeric()) or (option.isnumeric() and ((int(option) < 1) or (int(option) > 6))):
             print("Choose a valid option")
             continue

@@ -36,6 +36,7 @@ def operate(index):
         print('Now exiting...')
         exit()
 
+
 def print_app():
     print("Choose an option:\n")
     print("1: Visualize the items in shop")
@@ -49,6 +50,7 @@ if __name__ == "__main__":
     while True:
         print_app()
         option = input()
+        option = option.strip('\n')
         if (not option.isnumeric()) or (option.isnumeric() and ((int(option) < 1) or (int(option) > 4))):
             print("Choose a valid option")
             continue
