@@ -50,9 +50,7 @@ if __name__ == "__main__":
     while True:
         print_app()
         option = input("Write option: ")
-        if not option.isnumeric():
-            print("Option not a number")
-            continue
+
         option = int(option)
         if option < 1 or option > 6:
             print("Given option not in range [1, 6]")
