@@ -1,5 +1,15 @@
 from flask import Flask, render_template, send_from_directory
 
+app = Flask(__name__)
+
+config_db = {
+    'user': 'db',
+    'password': '1224',
+    'host': 'db',
+    'port': '3306',
+    'database': 'db'
+}
+
 
 def show_items():
     pass
