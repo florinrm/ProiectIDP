@@ -15,7 +15,7 @@ config = {
 }
 
 
-@app.route('/showItems')
+@app.route('/showItems', methods=["GET", "POST"])
 def show_items():
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
@@ -34,5 +34,5 @@ def show_items():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=True, port=5000)
 

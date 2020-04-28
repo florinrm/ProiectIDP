@@ -15,6 +15,6 @@ RUN pip install --no-cache-dir -r /usr/src/client/requirements.txt
 
 COPY client.py /usr/src/client/
 
-EXPOSE 5000
+EXPOSE 5001
 
 CMD ["python3", "/usr/src/client/client.py"]
