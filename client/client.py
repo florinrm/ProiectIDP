@@ -29,7 +29,8 @@ def buy_song(url, id):
 
 def operate(index, url):
     if index == 1:
-        show_items(url)
+        items = show_items(url)
+        print(items)
     elif index == 2:
         id = input("Write album id: ")
         buy_album(url, id)
