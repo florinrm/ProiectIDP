@@ -1,6 +1,7 @@
+create database db;
 use db;
 
-CREATE TABLE IF NOT EXISTS song (
+CREATE TABLE song (
     title varchar(30) not null,
     artist varchar(30) not null,
     price int not null,
@@ -10,25 +11,13 @@ CREATE TABLE IF NOT EXISTS song (
     primary key(song_id)
 );
 
-CREATE TABLE IF NOT EXISTS album (
+CREATE TABLE album (
     title varchar(30) not null,
     artist varchar(30) not null,
     price int not null,
     album_id varchar(30) not null,
     release_year int not null,
     primary key(album_id)
-);
-
-CREATE TABLE IF NOT EXISTS users (
-    username varchar(30) not null,
-    password varchar(30) not null,
-    PRIMARY KEY(username)
-);
-
-CREATE TABLE IF NOT EXISTS admins (
-    username varchar(30) not null,
-    password varchar(30) not null,
-    PRIMARY KEY(username)
 );
 
 INSERT INTO song(title, artist, price, album, song_id, release_year) VALUES
@@ -51,8 +40,3 @@ INSERT INTO album(title, artist, price, album_id, release_year) VALUES
     ('HIStory', 'Michael Jackson', 30, 10006, 1995),
     ('Thriller', 'Michael Jackson', 30, 10007, 1982),
     ('Music To Be Murdered By', 'Eminem', 30, 10008, 2020);
-
-INSERT INTO users(username, password) VALUES
-    ('florin', 'muenan'),
-    ('deea', 'chica'),
-    ('andreea', 'pika_pika');

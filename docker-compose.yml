@@ -15,17 +15,14 @@ services:
       - "3306:3306"
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: db
-      MYSQL_USER: db
-      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: root
 
   client:
     image: florinrm/proiect_idp:client
     stdin_open: true
     tty: true
     ports:
-      - "8888:5000"
+      - "5001:5001"
     depends_on:
       - db
     networks:
@@ -36,7 +33,7 @@ services:
     depends_on:
       - db
     ports:
-      - "5001:5001"
+      - "5000:5000"
     networks:
       - webnet
 

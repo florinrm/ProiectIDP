@@ -33,3 +33,7 @@ docker stack deploy -c .\docker-compose.yml app
 docker stack rm app
 docker swarm leave --force
 ```
+
+docker container run -i -p 5001:5001 client
+docker container run -p 5000:5000 app
+docker container run -p 3306:3306 --env="MYSQL_ROOT_PASSWORD=root" db

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, send_from_directory
 from prometheus_flask_exporter import PrometheusMetrics
-import mysql.connector as connector
+import mysql.connector
 import random
 import os
 
@@ -17,7 +17,7 @@ config = {
 
 @app.route('/showItems')
 def show_items():
-    conn = connector.connect(**config)
+    conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
     query_albums = 'select title, artist, price, album, song_id, release_year from song'
     query_songs = 'select title, artist, price, album_id, release_year from album'
