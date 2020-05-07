@@ -7,7 +7,7 @@ import os
 
 
 def show_items(url):
-    request_url = url + "/showItems?"
+    request_url = url + "/"
     return requests.get(request_url)
 
 
@@ -44,7 +44,7 @@ def print_app():
 
 if __name__ == "__main__":
     print("Welcome to the Online Music Shopping")
-    url = "http://0.0.0.0:5000"
+    url = "http://127.0.0.1:5000"
     while True:
         print_app()
         option = input("Write option: ")

@@ -19,6 +19,7 @@ services:
 
   client:
     image: florinrm/proiect_idp:client
+    hostname: client
     stdin_open: true
     tty: true
     ports:
@@ -30,6 +31,7 @@ services:
 
   app:
     image: florinrm/proiect_idp:app
+    hostname: app
     depends_on:
       - db
     ports:
@@ -39,6 +41,7 @@ services:
 
   admin:
     image: florinrm/proiect_idp:admin
+    hostname: admin
     depends_on:
       - db
     stdin_open: true

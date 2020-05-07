@@ -1,19 +1,6 @@
-FROM alpine:edge
-
-RUN echo "**** install Python ****" && \
-    apk add --no-cache python3 && \
-    if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
-    \
-    echo "**** install pip ****" && \
-    python3 -m ensurepip && \
-    rm -r /usr/lib/python*/ensurepip && \
-    pip3 install --no-cache --upgrade pip setuptools wheel && \
-    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
-
-COPY requirements.txt /usr/src/app/
-RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
-
-COPY app.py /usr/src/app/
-EXPOSE 5001
-
-CMD ["python3", "/usr/src/app/app.py"]
+FROM python:3.6
+COPY requirements.txt /tmp
+ADD app.py /
+RUN pip install -r /tmp/requirements.txt
+EXPOSE 5000
+CMD ["python3", "app.py"]

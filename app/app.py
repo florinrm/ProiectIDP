@@ -5,6 +5,7 @@ import random
 import os
 
 app = Flask(__name__)
+app.config["DEBUG"] = True
 
 config = {
     'user': 'root',
@@ -15,21 +16,10 @@ config = {
 }
 
 
-@app.route('/showItems', methods=["GET", "POST"])
+@app.route('/', methods=["GET"])
 def show_items():
-    conn = mysql.connector.connect(**config)
-    cursor = conn.cursor()
-    query_albums = 'select title, artist, price, album, song_id, release_year from song'
-    query_songs = 'select title, artist, price, album_id, release_year from album'
-    cursor.execute(query_albums)
-    albums = cursor.fetchall()
-    list_albums = []
-    for album in albums:
-        list_albums.append(album[0], album[1], album[2],
-                           album[3], album[4], album[5])
-    cursor.close()
-    conn.close()
-    return list_albums
+    return '''<h1>Distant Reading Archive</h1>
+<p>A prototype API for distant reading of science fiction novels.</p>'''
 
 
 
