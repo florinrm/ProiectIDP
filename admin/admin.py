@@ -12,7 +12,14 @@ config_db = {
 
 
 def show_items():
-    pass
+    connection = mysql.connector.connect(**config_db)
+    cursor = connection.cursor()
+    sql_query = "select title, artist, price, album, release_year from song";
+    elems = cursor.execute(sql_query)
+    for elem in elems:
+        print(elem[0])
+    cursor.close()
+    connection.close()
 
 
 def add_song():

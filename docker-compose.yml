@@ -5,6 +5,7 @@ networks:
 
 volumes:
   mysql_db:
+  prometheus_volume: {}
 
 services:
   db:
@@ -50,3 +51,15 @@ services:
     tty: true
     networks:
       - webnet
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    networks:
+      - mynetwork
+    
