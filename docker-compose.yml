@@ -1,3 +1,4 @@
+ 
 version: '3.3'
 
 services:
@@ -15,7 +16,7 @@ services:
             MYSQL_PASSWORD: server
        
     admin:
-        build: florinrm/proiect_idp:admin
+        image: florinrm/proiect_idp:admin
         restart: always
         tty: true
         stdin_open: true
@@ -23,7 +24,7 @@ services:
             - 5001:5001
 
     server:
-        build: florinrm/proiect_idp:server
+        image: florinrm/proiect_idp:server
         restart: always
         links:
             - "mysql:database"
@@ -31,7 +32,7 @@ services:
             - 5000:5000
 
     client:
-        build: florinrm/proiect_idp:client
+        image: florinrm/proiect_idp:client
         ports:
             - 5002:5002
 
