@@ -1,5 +1,0 @@
-Flask==1.1.1
-redis
-mysql-connector
-prometheus-flask-exporter
-requests

@@ -1,6 +1,9 @@
 FROM python:3.6
-COPY requirements.txt /tmp
-ADD client.py /
-RUN pip install -r /tmp/requirements.txt
-EXPOSE 5100
-CMD ["python3", "client.py"]
+RUN pip install requests
+RUN pip install jsonify
+RUN pip install flask
+RUN pip install flask-socketio
+COPY /src_client /app
+WORKDIR /app
+EXPOSE 80
+CMD ["python", "client.py"]

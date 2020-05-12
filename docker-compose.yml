@@ -1,65 +1,45 @@
-version: "3.7"
-networks:
-  webnet:
-    driver: overlay
-
-volumes:
-  mysql_db:
-  prometheus_volume: {}
+version: '3.3'
 
 services:
-  db:
-    image: florinrm/proiect_idp:db
-    volumes:
-      - mysql_db:/var/lib/mysql
-    ports:
-      - "3306:3306"
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
+    mysql:
+        image: mysql
+        volumes:
+            - mysql_data:/var/lib/mysql
+        ports:
+            - 3306:3306
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: mysql
+            MYSQL_USER: server
+            MYSQL_PASSWORD: server
+       
+    admin:
+        build: florinrm/proiect_idp:admin
+        restart: always
+        tty: true
+        stdin_open: true
+        ports:
+            - 5001:5001
 
-  client:
-    image: florinrm/proiect_idp:client
-    hostname: client
-    stdin_open: true
-    tty: true
-    ports:
-      - "5001:5001"
-    depends_on:
-      - db
-    networks:
-      - webnet
+    server:
+        build: florinrm/proiect_idp:server
+        restart: always
+        links:
+            - "mysql:database"
+        ports:
+            - 5000:5000
 
-  app:
-    image: florinrm/proiect_idp:app
-    hostname: app
-    depends_on:
-      - db
-    ports:
-      - "5000:5000"
-    networks:
-      - webnet
+    client:
+        build: florinrm/proiect_idp:client
+        ports:
+            - 5002:5002
 
-  admin:
-    image: florinrm/proiect_idp:admin
-    hostname: admin
-    depends_on:
-      - db
-    stdin_open: true
-    ports:
-      - "5002:5002"
-    tty: true
-    networks:
-      - webnet
+    grafana:
+        image: grafana/grafana:5.1.0
+        ports:
+            - 3000:3000
+        user: "69"
 
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus/:/etc/prometheus/
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-    ports:
-      - "9090:9090"
-    networks:
-      - mynetwork
-    
+volumes:
+    mysql_data: {}

@@ -1,5 +1,7 @@
 FROM python:3.6
-COPY requirements.txt /tmp
-ADD admin.py /
-RUN pip install -r /tmp/requirements.txt
-CMD ["python3", "admin.py"]
+COPY /src_admin /app
+RUN pip install requests
+RUN pip install pika
+WORKDIR /app
+EXPOSE 80
+CMD ["python", "admin.py"]
